@@ -10,6 +10,7 @@ import Foundation
 import Dispatch
 import Bluetooth
 import BluetoothHCI
+import BluetoothGATT
 
 #if os(macOS) || os(Linux)
 
