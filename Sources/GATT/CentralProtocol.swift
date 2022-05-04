@@ -8,7 +8,6 @@
 
 import Foundation
 import Bluetooth
-import BluetoothGATT
 
 /// GATT Central Manager
 ///
@@ -17,7 +16,7 @@ public protocol CentralProtocol: class {
     
     associatedtype Peripheral: Peer
     
-    associatedtype Advertisement: AdvertisementDataProtocol
+    associatedtype Advertisement: AdvertisementData
     
     var log: ((String) -> ())? { get set }
     
@@ -58,7 +57,7 @@ public protocol CentralProtocol: class {
                 for characteristic: Characteristic<Peripheral>,
                 timeout: TimeInterval) throws
     
-    func maximumTransmissionUnit(for peripheral: Peripheral) throws -> ATTMaximumTransmissionUnit 
+    func maximumTransmissionUnit(for peripheral: Peripheral) throws -> MaximumTransmissionUnit
 }
 
 public extension CentralProtocol {
@@ -152,7 +151,7 @@ public extension CentralProtocol {
     
 // MARK: - Supporting Types
 
-public protocol GATTAttribute {
+public protocol GATTCentralAttribute {
     
     associatedtype Peripheral: Peer
     
@@ -163,7 +162,7 @@ public protocol GATTAttribute {
     var peripheral: Peripheral { get }
 }
 
-public struct Service <Peripheral: Peer> : GATTAttribute {
+public struct Service <Peripheral: Peer> : GATTCentralAttribute, Equatable, Hashable {
     
     public let identifier: UInt
     
@@ -185,9 +184,9 @@ public struct Service <Peripheral: Peer> : GATTAttribute {
     }
 }
 
-public struct Characteristic <Peripheral: Peer> : GATTAttribute {
+public struct Characteristic <Peripheral: Peer> : GATTCentralAttribute, Equatable, Hashable {
     
-    public typealias Property = GATT.CharacteristicProperty
+    public typealias Property = CharacteristicProperty
     
     public let identifier: UInt
     
@@ -209,7 +208,7 @@ public struct Characteristic <Peripheral: Peer> : GATTAttribute {
     }
 }
 
-public struct Descriptor <Peripheral: Peer>: GATTAttribute {
+public struct Descriptor <Peripheral: Peer>: GATTCentralAttribute, Equatable, Hashable {
     
     public let identifier: UInt
     
