@@ -8,6 +8,7 @@
 
 import Foundation
 import Bluetooth
+import BluetoothGAP
 
 /// GATT Advertisement Data.
 public protocol AdvertisementDataProtocol: Equatable {
