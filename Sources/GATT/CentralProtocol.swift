@@ -8,6 +8,7 @@
 
 import Foundation
 import Bluetooth
+import BluetoothGATT
 
 /// GATT Central Manager
 ///
