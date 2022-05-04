@@ -8,7 +8,7 @@
 import Foundation
 import Dispatch
 import Bluetooth
-
+import BluetoothGATT
 #if os(macOS) || os(Linux)
 
 @available(macOS 10.12, *)
